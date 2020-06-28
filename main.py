@@ -31,11 +31,13 @@ def sms_reply():
                 to="{}".format(number),
                 from_=sandnum,
                 body='{}\n----------------\n{}\n------------------'.format(results[l-3],results[l-2]))
+            print(message.sid)
             time.sleep(0.25)
             message = client.messages.create(
                 to="{}".format(number),
                 from_=sandnum,
                 body='{}'.format(results[l - 1]))
+            print(message.sid)
             time.sleep(0.25)
     except:
         pass
