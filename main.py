@@ -1,12 +1,9 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 import torrent
-from twilio.rest import Client
-import time
 
+results = ['empty']
 app = Flask(__name__)
-
-
 
 
 @app.route("/")
@@ -16,37 +13,33 @@ def hello():
 @app.route("/sms", methods=['POST'])
 def sms_reply():
     msg = request.form.get('Body')
-    number = request.form.get('From')
-    results = torrent.getdata(msg)
-    account_sid = "YOUR_ACCOUNT_SID_HERE"
-    auth_token = "YOUR_AUTH_TOKEN_HERE"
-    client = Client(account_sid, auth_token)
-    try:
-        for i in range(1,31):
-            """if i>10:
-                break"""
-            l = i*3
-            sandnum="whatsapp:YOUR_SANDBOX_NUMBER_HERE"
-            message = client.messages.create(
-                to="{}".format(number),
-                from_=sandnum,
-                body='{}\n----------------\n{}\n------------------'.format(results[l-3],results[l-2]))
-            print(message.sid)
-            time.sleep(0.25)
-            message = client.messages.create(
-                to="{}".format(number),
-                from_=sandnum,
-                body='{}'.format(results[l - 1]))
-            print(message.sid)
-            time.sleep(0.25)
-    except:
-        pass
+    res = ''
+    res1 = ''
+    if msg.isnumeric():
+        if torrent.prev==[]:
+            res='No torrent searchers were made before.'
+        else:
+            res = torrent.prev[(int(msg)*3)-1]
+    else:
+        results = torrent.getdata(msg)
+        torrent.prev = results
+        if results==[]:
+            res='No results found'
+        else:
+            results1 = results[:45]
+            results2 = results[45:]
+            for i in range(0, len(results1)):
+                if i % 3 == 0:
+                    res += '{}. {}\n{}\n\n'.format((i // 3) + 1, results1[i], results1[i + 1])
+            if len(results)>=45:
+                for i in range(0, len(results2)-4):
+                    if i % 3 == 0:
+                        res1 += '{}. {}\n{}\n\n'.format((i // 3) + 16, results2[i], results2[i + 1])
 
     resp = MessagingResponse()
-    if results == []:
-        resp.message('No matching results found.')
-    else:
-        resp.message('End of results(1-5)')
+    resp.message(res)
+    if res1!='':
+        resp.message(res1)
     return str(resp)
 
 if __name__ == "__main__":

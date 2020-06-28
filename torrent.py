@@ -1,6 +1,6 @@
 import requests
 from html.parser import HTMLParser
-
+prev = []
 def getdata(term):
     r = requests.get("https://thepiratebay.zone/search/{}/1/99/0".format(term))
     a = ('class', 'detLink')
@@ -27,4 +27,5 @@ def getdata(term):
             messagel[l-1],messagel[l-2]=messagel[l-2],messagel[l-1]
         except:
             break
+
     return messagel
