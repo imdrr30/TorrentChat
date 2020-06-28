@@ -1,5 +1,7 @@
 import requests
 from html.parser import HTMLParser
+
+
 def getdata(term):
     r = requests.get("https://thepiratebay.zone/search/{}/1/99/0".format(term))
     a = ('class', 'detLink')
@@ -23,5 +25,9 @@ def getdata(term):
     for i in range(len(messagel)//3):
         l = 3 * i
         messagel[l-1],messagel[l-2]=messagel[l-2],messagel[l-1]
-
+    with open('temp', 'w+') as f:
+        for i in messagel:
+            f.write('{}\n'.format(i))
     return messagel
+
+getdata("Rick and Morty")

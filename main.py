@@ -13,6 +13,11 @@ def hello():
 @app.route("/sms", methods=['POST'])
 def sms_reply():
     global prev
+    try:
+        with open('temp', 'r+') as f:
+            prev = f.readlines()
+    except:
+        pass
     msg = request.form.get('Body')
     res = ''
     res1 = ''
@@ -23,8 +28,11 @@ def sms_reply():
             res = prev[(int(msg)*3)-1]
     else:
         results = torrent.getdata(msg)
+        print(prev)
         prev = []
+        print(prev)
         prev = results
+        print(prev)
         if results==[]:
             res='No results found'
         else:
