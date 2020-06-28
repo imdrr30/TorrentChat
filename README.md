@@ -20,8 +20,8 @@ In order work in backgroud we need to deploy in server.
 - `heroku git:remote -a YOUR_APP_NAME`
 ### Cofigure server files
 - Clone this repo
-- Add your Account sID and AuthToken in main.py
-- Add your Sandbox number in main.py
+- Add your Account sID and AuthToken in line 21,22 of `main.py`
+- Add your Sandbox number in line 32 of `main.py`
 ### Push it to server
 - Go to the repo directoy.
 ```
