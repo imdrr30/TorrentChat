@@ -1,9 +1,10 @@
 # TorrentChat
 Get torrent search results via WhatsApp.
 ## Set it up
-### Get Twilio Trail Account
+## Get Twilio Trail Account
 - Sign up for Twilio
 - Enable WhatsApp SandBox
+- Register your number to your sandbox following the instructions on the site.
 ## Heroku Deployment
 ### Getting Account
 In order work in backgroud we need to deploy in server.
