@@ -32,7 +32,7 @@ def sms_reply():
                 if i % 3 == 0:
                     res += '{}. {}\n{}\n\n'.format((i // 3) + 1, results1[i], results1[i + 1])
             if len(results)>=45:
-                for i in range(0, len(results2)-4):
+                for i in range(0, len(results2)):
                     if i % 3 == 0:
                         res1 += '{}. {}\n{}\n\n'.format((i // 3) + 16, results2[i], results2[i + 1])
 

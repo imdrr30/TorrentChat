@@ -21,11 +21,9 @@ def getdata(term):
                 #print(data)
     parser = MyHTMLParser()
     parser.feed(r.text)
-    for i in range(len(messagel)):
-        try:
-            l=3*i
-            messagel[l-1],messagel[l-2]=messagel[l-2],messagel[l-1]
-        except:
-            break
+    for i in range(len(messagel)//3):
+        l = 3 * i
+        print(i)
+        messagel[l-1],messagel[l-2]=messagel[l-2],messagel[l-1]
 
     return messagel
