@@ -18,22 +18,23 @@ def sms_reply():
     msg = request.form.get('Body')
     number = request.form.get('From')
     results = torrent.getdata(msg)
-    account_sid = "AC086a5ea5f6b1f60d1620b403b0773b9e"
-    auth_token = "049ec69bcb74eb573f7710ec65fc2039"
+    account_sid = "YOUR_ACCOUNT_SID_HERE"
+    auth_token = "YOUR_AUTH_TOKEN_HERE"
     client = Client(account_sid, auth_token)
     try:
         for i in range(1,31):
             """if i>10:
                 break"""
             l = i*3
+            sandnum="whatsapp:YOUR_SANDBOX_NUMBER_HERE"
             message = client.messages.create(
                 to="{}".format(number),
-                from_="whatsapp:+14155238886",
+                from_=sandnum,
                 body='{}\n----------------\n{}\n------------------'.format(results[l-3],results[l-2]))
             time.sleep(0.25)
             message = client.messages.create(
                 to="{}".format(number),
-                from_="whatsapp:+14155238886",
+                from_=sandnum,
                 body='{}'.format(results[l - 1]))
             time.sleep(0.25)
     except:
