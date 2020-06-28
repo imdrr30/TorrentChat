@@ -1,5 +1,6 @@
 # TorrentChat
 Get torrent search results via WhatsApp.
+- ![Demo](https://github.com/revanrohith/TorrentChat/raw/master/demo.gif)
 ## Set it up
 ## Get Twilio Trail Account
 - Sign up for Twilio
