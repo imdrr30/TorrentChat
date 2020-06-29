@@ -24,6 +24,8 @@ def sms_reply():
     if msg.isnumeric():
         if prev == []:
             res='No torrent searchers were made before.'
+        elif len(prev)>((int(msg)*3)-1):
+            res='Seleted data not Available.'
         else:
             res = prev[(int(msg)*3)-1]
     else:
